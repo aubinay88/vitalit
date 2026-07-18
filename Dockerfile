@@ -16,10 +16,7 @@ COPY . .
 # Installer les dépendances PHP (sans les outils de développement)
 RUN composer install --no-dev --optimize-autoloader
 
-# Précompiler la configuration
-RUN php artisan config:cache
-
 EXPOSE 8000
 
-# Démarrer : appliquer les migrations puis lancer le serveur
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+# Démarrer : cache config (avec les vraies variables), migrations, puis serveur
+CMD php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
