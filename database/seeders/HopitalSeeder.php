@@ -11,6 +11,12 @@ class HopitalSeeder extends Seeder
 {
     public function run(): void
     {
+
+        // On repart toujours d'une base propre : supprime les hôpitaux existants.
+        // Grâce au onDelete('cascade') sur les clés étrangères, leurs lits et
+        // spécialités sont automatiquement supprimés aussi.
+        Hopital::query()->delete();
+        
         $etablissements = [
             [
                 'nom' => 'CHU Yalgado Ouédraogo',
