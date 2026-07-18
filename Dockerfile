@@ -19,4 +19,4 @@ RUN composer install --no-dev --optimize-autoloader
 EXPOSE 8000
 
 # Démarrer : cache config (avec les vraies variables), migrations, puis serveur
-CMD php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan config:cache && php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=$PORT
